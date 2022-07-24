@@ -12,6 +12,7 @@ let solution = 'abcd';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 
+
 const printBoard = () =>  {
   for (let i = 0; i < board.length; i++) {
     console.log(board[i]);
@@ -33,10 +34,10 @@ const generateHint = (guess) =>  {
   // your code here
   let solutionArray = solution.split("")
   let guessArray= guess.split("")
-  let correctLetters= 0
   let unmatchedSlots = ['big', 'big', 'big', 'big']
-  let correctLetterLocations=0
   let spentLetter=[]
+  let correctLetters = 0
+  let correctLetterLocations = 0
   
  for (const [index,letters] of guessArray.entries()) {
    if(guessArray[index] === solutionArray[index]){
@@ -53,19 +54,20 @@ for (const letters of unmatchedSlots){
     spentLetter.push(letters) 
   }
 }
-console.log(`${correctLetterLocations}-${correctLetters}`)}
+return correctLetterLocations + "-" + correctLetters
+}
   
 
 const mastermind = (guess) => {
   solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
   if( guess === solution) {
-    console.log("You guessed it!")
     board = []
+    console.log("You guessed it!")
+    return "You guessed it!"
   }
   else {
-    generateHint(guess)
-    board.push(guess)
+    board.push(guess + " " + generateHint(guess))
   }
 
 }
